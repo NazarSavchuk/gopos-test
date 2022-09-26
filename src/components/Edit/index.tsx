@@ -4,7 +4,7 @@ import { Container, Form, Button } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchCategories } from "../../redux/Slices/getCategories";
 import { CHANGABLE_PRODUCT_URL } from "../../redux/API";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { AUTHORIZATION } from "../../redux/API";
 import axios from "axios";
 const Edit = () => {
@@ -22,7 +22,7 @@ const Edit = () => {
         `${CHANGABLE_PRODUCT_URL}${id}`,
         AUTHORIZATION
       );
-      setChangealbeProduct(data.data);
+      setChangeableProduct(data.data);
     } catch (err) {
       console.log(err);
     }
@@ -32,12 +32,7 @@ const Edit = () => {
     try {
       const { data } = await axios.put(
         `${CHANGABLE_PRODUCT_URL}${id}`,
-        {
-          name: changeableName,
-          category: {
-            name: changeableCategory,
-          },
-        },
+        changeableProduct,
         AUTHORIZATION
       );
       console.log(data);
@@ -61,8 +56,19 @@ const Edit = () => {
     return "Loading";
   };
 
-  const putChangeProduct = (id, changeableName, changeableCategory) => {
-    // changeProduct(id, changeableName, changeableCategory);
+  const putChangeProduct = () => {
+    console.log(changeableName, changeableCategory);
+
+    setChangeableProduct({
+      name: changeableName,
+      category: {
+        name: changeableCategory,
+      },
+    });
+    console.log(changeableProduct);
+
+    changeProduct();
+    fetchChangeableProduct(id);
   };
 
   const canLoadContent = () => {

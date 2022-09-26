@@ -7,6 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Products from "./components/Products";
 import Categories from "./components/Categories";
 import Edit from "./components/Edit";
+import CreateProduct from "./components/CreateProduct";
 
 export const App = () => {
   return (
@@ -17,7 +18,7 @@ export const App = () => {
         <Route path="/products" element={<Products />}></Route>
         <Route path="/categories" element={<Categories />}></Route>
         <Route path="/products/edit/:id" element={<Edit />}></Route>
-        <Route path="/create" element={<div>Create</div>}></Route>
+        <Route path="/create" element={<CreateProduct />}></Route>
       </Routes>
     </div>
   );
